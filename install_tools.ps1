@@ -51,6 +51,28 @@ foreach ($package in $packages) {
   }
 }
 
+if ($packages -contains "neovim") {
+  md ~\AppData\Local\nvim-data\site\autoload
+  $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  (New-Object Net.WebClient).DownloadFile(
+    $uri,
+    $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
+      "~\AppData\Local\nvim-data\site\autoload\plug.vim"
+    )
+  )
+}
+
+if ($packages -contains "vim") {
+  md ~\vimfiles\autoload
+  $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  (New-Object Net.WebClient).DownloadFile(
+    $uri,
+    $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
+      "~\vimfiles\autoload\plug.vim"
+    )
+  )
+}
+
 # TODO:
 # Install Docker?
 # not with choco

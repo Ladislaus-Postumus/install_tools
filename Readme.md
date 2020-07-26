@@ -1,4 +1,4 @@
-Readme
+install_tools
 ======
 
 This is a Powershell-Script which will install tools for you.
