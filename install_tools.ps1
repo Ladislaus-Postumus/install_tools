@@ -45,9 +45,13 @@ foreach ($arg in $args) {
 # Install Choco Packages
 foreach ($package in $packages) {
   if (-Not (choco list -localonly | Select-String -Pattern $package)) {
-    choco install $package -y
+    if (-Not (choco install $package -y)) {
+      choco install $package -y
+    }
   } else {
-    choco upgrade $package -y
+    if (-Not (choco upgrade $package -y)) {
+      choco upgrade $package -y
+    }
   }
 }
 
@@ -75,7 +79,7 @@ if ($packages -contains "vim") {
 
 # TODO:
 # Install Docker?
-# not with choco
+# not with choco:
 # Install TeX
 # Install JDK (newest)
 # Install JRE (1.8/ 1.11)
